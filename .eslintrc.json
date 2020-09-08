@@ -1,0 +1,120 @@
+{
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"jsx": true,
+		"useJSXTextNode": true,
+		"project": "./tsconfig.json",
+		"sourceType": "module",
+		"ecmaVersion": 2018,
+		"ecmaFeatures": {
+			"jsx": true
+		}
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:import/errors",
+		"plugin:import/warnings",
+		"plugin:import/typescript",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:prettier/recommended",
+		"plugin:react/recommended",
+		"prettier",
+		"prettier/@typescript-eslint",
+		"prettier/react"
+	],
+	"plugins": [
+		"@typescript-eslint",
+		"react",
+		"react-hooks",
+		"jsx-a11y",
+		"no-loops",
+		"emotion"
+	],
+	"rules": {
+		"curly": "error",
+		"@typescript-eslint/no-explicit-any": "warn",
+		"@typescript-eslint/consistent-type-definitions": ["error", "type"],
+		"@typescript-eslint/prefer-optional-chain": "error",
+		"@typescript-eslint/prefer-nullish-coalescing": "error",
+		"react-hooks/rules-of-hooks": "error",
+		"react-hooks/exhaustive-deps": "warn",
+		"@typescript-eslint/explicit-module-boundary-types": "off",
+		"no-console": "warn",
+		"no-restricted-imports": [
+			"error",
+			{
+				"paths": [
+					{
+						"name": "@emotion/styled",
+						"message": "Please import from @emotion/styled/macro."
+					}
+				],
+				"patterns": ["!@emotion/styled/macro"]
+			}
+		],
+		"emotion/jsx-import": "error",
+		"emotion/no-vanilla": "error",
+		"emotion/import-from-emotion": "error",
+		"emotion/styled-import": "error",
+		"import/order": [
+			"error",
+			{
+				"newlines-between": "always",
+				"groups": [
+					"builtin",
+					"external",
+					"internal",
+					"parent",
+					"sibling",
+					"index"
+				],
+				"pathGroups": [
+					{
+						"pattern": "Components/**",
+						"group": "internal",
+						"position": "before"
+					},
+					{
+						"pattern": "Pages/**",
+						"group": "internal",
+						"position": "before"
+					},
+					{
+						"pattern": "Assets/**",
+						"group": "internal",
+						"position": "after"
+					},
+					{
+						"pattern": "Utils/**",
+						"group": "parent",
+						"position": "before"
+					}
+				]
+			}
+		]
+	},
+	"settings": {
+		"react": {
+			"version": "detect"
+		},
+		"import/resolver": {
+			"node": {
+				"paths": "src"
+			}
+		}
+	},
+	"overrides": [
+		{
+			"files": ["**/*.tsx"],
+			"rules": {
+				"react/prop-types": "off"
+			}
+		}
+	],
+	"env": {
+		"browser": true,
+		"node": true,
+		"es6": true,
+		"jest": true
+	}
+}
