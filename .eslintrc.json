@@ -85,6 +85,26 @@
 						"position": "after"
 					},
 					{
+						"pattern": "Api/**",
+						"group": "parent",
+						"position": "before"
+					},
+					{
+						"pattern": "Hooks/**",
+						"group": "parent",
+						"position": "before"
+					},
+					{
+						"pattern": "Routing/**",
+						"group": "parent",
+						"position": "before"
+					},
+					{
+						"pattern": "Theme/**",
+						"group": "parent",
+						"position": "after"
+					},
+					{
 						"pattern": "Utils/**",
 						"group": "parent",
 						"position": "before"

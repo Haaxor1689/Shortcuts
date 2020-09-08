@@ -1,13 +1,12 @@
 import { css } from '@emotion/core';
 
-import { Box, BoxProps } from 'components/styled';
+import { Box, BoxProps } from 'Components/Styled';
 
-import { offscreenStyle } from 'theme/accessibilityStyles';
-import styled from 'theme/styled';
+import styled from 'Theme';
 
-interface Props {
+type Props = {
 	ellipsis?: boolean;
-}
+};
 
 const Typography = styled(Box)<BoxProps & Props>`
 	${p =>
