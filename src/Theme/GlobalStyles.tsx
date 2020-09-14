@@ -42,6 +42,15 @@ const GlobalStyles = () => (
 				margin: ${theme.space[2]}px 0;
 			}
 
+			button {
+				appearance: none;
+				border: none;
+				background: none;
+				padding: ${theme.space[2]}px ${theme.space[3]}px;
+				color: unset;
+				cursor: pointer;
+			}
+
 			[data-reach-dialog-overlay] {
 				z-index: 999;
 			}
