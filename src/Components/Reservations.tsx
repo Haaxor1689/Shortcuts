@@ -7,9 +7,9 @@ import { Theme } from 'Theme';
 
 import { InvertFocusStyle } from 'Theme/GlobalStyles';
 
-import Typography from './Typography';
-
-import { Box, Flex, Grid } from '.';
+import Typography from './Styled/Typography';
+import Spinner from './Styled/Spinner';
+import { Box, Flex, Grid } from './Styled';
 
 type Props = {
 	isMobile: boolean;
@@ -92,7 +92,7 @@ const Reservations: FC<Props> = ({ isMobile }) => {
 				</Typography>
 			</Flex>
 			<Flex></Flex>
-			{reservations && (
+			{reservations.length > 0 ? (
 				<Grid
 					gridTemplateRows="auto auto"
 					gridAutoColumns="1fr"
@@ -136,6 +136,8 @@ const Reservations: FC<Props> = ({ isMobile }) => {
 						}
 					`}
 				/>
+			) : (
+				<Spinner />
 			)}
 		</Fragment>
 	);

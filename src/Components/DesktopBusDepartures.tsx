@@ -5,9 +5,9 @@ import { MdDirectionsBus } from 'react-icons/md';
 
 import { Theme } from 'Theme';
 
-import Typography from './Typography';
-
-import { Flex } from '.';
+import Typography from './Styled/Typography';
+import { Flex } from './Styled';
+import Spinner from './Styled/Spinner';
 
 type Props = {
 	title: string;
@@ -41,7 +41,7 @@ const DesktopBusDepartures: FC<Props> = ({ title, href }) => {
 					{title}
 				</Typography>
 			</Flex>
-			{bus && (
+			{bus ? (
 				<Flex
 					alignSelf="center"
 					dangerouslySetInnerHTML={{
@@ -88,6 +88,8 @@ const DesktopBusDepartures: FC<Props> = ({ title, href }) => {
 						}
 					`}
 				/>
+			) : (
+				<Spinner />
 			)}
 		</Fragment>
 	);

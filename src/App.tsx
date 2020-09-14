@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { ThemeProvider } from 'emotion-theming';
 
+import Reservations from 'Components/Reservations';
+import MobileBusDepartures from 'Components/MobileBusDepartures';
 import { Flex } from 'Components/Styled';
-import Reservations from 'Components/Styled/Reservations';
-import MobileBusDepartures from 'Components/Styled/MobileBusDepartures';
-import DesktopBusDepartures from 'Components/Styled/DesktopBusDepartures';
+import DesktopBusDepartures from 'Components/DesktopBusDepartures';
 
 import { theme } from 'Theme';
 
