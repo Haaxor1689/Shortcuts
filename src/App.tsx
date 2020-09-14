@@ -7,8 +7,11 @@ import { Flex, Grid } from 'Components/Styled';
 
 import { theme, Theme } from 'Theme';
 
+import useDeviceDetect from 'Hooks/useDeviceDetect';
+
 const App: FC = () => {
 	const [day, setDay] = useState(0);
+	const isMobile = useDeviceDetect();
 
 	// Swimming pool
 	const [reservations, setReservations] = useState<Element[][]>([]);
@@ -44,21 +47,35 @@ const App: FC = () => {
 	// Bus
 	const [bus, setBus] = useState<Element[]>();
 	useEffect(() => {
-		const fetchData = async () => {
-			const response = await fetch(
-				'https://cors-anywhere.herokuapp.com/https://idos.idnes.cz/idsjmk/spojeni/vysledky/?f=Malinovsk%C3%A9ho%20n%C3%A1m%C4%9Bst%C3%AD&fc=302003&t=Sportovn%C3%AD&tc=302003',
-			);
-			const text = await response.text();
-			const el = document.createElement('div');
-			el.innerHTML = text;
-			const res = el.querySelectorAll('.box.connection.detail-box');
-			if (!res) {
-				return;
-			}
-			setBus(Array(...res));
-		};
+		const fetchData = isMobile
+			? async () => {
+					const response = await fetch(
+						'https://cors-anywhere.herokuapp.com/https://t.idos.idnes.cz/vlakyautobusymhdvse/spojeni/?fromT=Malinovsk%C3%A9ho+n%C3%A1m%C4%9Bst%C3%AD&fromH=Malinovsk%C3%A9ho+n%C3%A1m%C4%9Bst%C3%AD%25302003%251417%25%2549.195544999999996%2516.61378125%25false%25&fromP=&fromMP=false&toT=Sportovn%C3%AD&toH=Sportovn%C3%AD%25302003%252323%25%2549.2121205%2516.607163%25false%25&toP=&toMP=&arrdep=false&arrH=false&date=&dateH=&time=&timeH=&af=false&afShow=false&viaT=&viaH=&viaP=&viaMP=&trtypeH_0=on&trtype_150=on&trtype_151=on&trtype_152=on&trtype_153=on&trtype_156=on&trtype_2=on&trtype_3=on&trtype_4=on&trtype_5=on&trtype_6=on&trtype_9=on&trtypeids=&maxChange=4&minTime=-1&cmd=cmdSearch',
+					);
+					const text = await response.text();
+					const el = document.createElement('div');
+					el.innerHTML = text;
+					const res = el.querySelectorAll('.panel-body');
+					if (!res) {
+						return;
+					}
+					setBus(Array(...res).slice(0, 3));
+			  }
+			: async () => {
+					const response = await fetch(
+						'https://cors-anywhere.herokuapp.com/https://idos.idnes.cz/idsjmk/spojeni/vysledky/?f=Malinovsk%C3%A9ho%20n%C3%A1m%C4%9Bst%C3%AD&fc=302003&t=Sportovn%C3%AD&tc=302003',
+					);
+					const text = await response.text();
+					const el = document.createElement('div');
+					el.innerHTML = text;
+					const res = el.querySelectorAll('.box.connection.detail-box');
+					if (!res) {
+						return;
+					}
+					setBus(Array(...res));
+			  };
 		fetchData();
-	}, []);
+	}, [isMobile]);
 
 	return (
 		<ThemeProvider theme={theme}>
